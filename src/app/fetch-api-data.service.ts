@@ -7,7 +7,7 @@ import { tap, take } from 'rxjs';
 
 
 //Declaring the api url that will provide data for the client app
-const apiUrl = 'YOUR_HOSTED_API_URL/';
+const apiUrl = 'https://myflixapp-api-3e4d3ace1043.herokuapp.com/';
 @Injectable({
   providedIn: 'root'
 })
