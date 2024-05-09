@@ -15,22 +15,19 @@
   
             <!-- Display user's name -->
             <div class="user-info-display">
-              <label>Name</label>
-              <span>{{ userData.Username }}</span>
+              Name: {{user.Username}}
           </div>
 
           <!-- Display user's birthday -->
           <div class="user-info-display">
-              <label>Birthday</label>
-              <span>{{ userData.Birthday | date : "longDate" }}</span>
+              Birthday: {{ user.birthday | date : "longDate" }}
           </div>
 
           <!-- Display user's email -->
           <div class="user-info-display">
-              <label>Email</label>
-              <span>{{ userData.Email }}</span>
+              Email: {{ userData.email }}
           </div>
-
+          <p>
   <button
     mat-raised-button
     (click)="openUpdateUserDialog()"
@@ -47,7 +44,7 @@
   >
      Delete Profile
   </button>
-
+  </p>
   
   <p>
   <h2>My Favorite Movies</h2>

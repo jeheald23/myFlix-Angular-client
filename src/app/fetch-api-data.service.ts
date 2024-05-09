@@ -105,8 +105,6 @@ export class FetchApiDataService {
       Authorization: "Bearer " + token,
     });
     return this.http.get(url, { headers }).pipe(
-      tap((result: any) => {
-      }),
       map(this.extractResponseData),
       catchError((error) => {
         console.error("API Error:", error);
