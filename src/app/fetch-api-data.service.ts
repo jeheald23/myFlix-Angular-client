@@ -100,7 +100,7 @@ export class FetchApiDataService {
   getUser(): Observable<any> {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
     const token = localStorage.getItem("token");
-    const url = apiUrl + "users/" + user.userName;
+    const url = apiUrl + "users/" + user.Username; // <-- Corrected property name
     const headers = new HttpHeaders({
       Authorization: "Bearer " + token,
     });
@@ -145,7 +145,7 @@ export class FetchApiDataService {
   // Making the api call for the Update User endpoint.
   updateUser(userDetails: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.put(apiUrl + 'users/' + userDetails.userName, userDetails, {
+    return this.http.put(apiUrl + 'users/' + userDetails.Username, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
@@ -163,7 +163,7 @@ export class FetchApiDataService {
     const headers = new HttpHeaders({
       "Authorization": `Bearer ${token}`
     });
-    return this.http.delete(apiUrl + 'users/' + user.email, { headers: headers, responseType: 'text' })
+    return this.http.delete(apiUrl + 'users/' + user.Username, { headers: headers, responseType: 'text' })
       .pipe(take(1), catchError(this.handleError));
   }
 
@@ -173,7 +173,7 @@ export class FetchApiDataService {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
     console.log('Deleting movie with ID:', movieid);
-    return this.http.delete(apiUrl + 'users/' + user.userName + '/movies/' + movieid, {
+    return this.http.delete(apiUrl + 'users/' + user.Username + '/movies/' + movieid, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
@@ -184,17 +184,15 @@ export class FetchApiDataService {
   }
 
   //Handling of HTTP errors.
-  private handleError(error: HttpErrorResponse): any {
+  private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occurred:', error.error.message);
     } else {
       console.error(
         `Error Status code ${error.status}, ` +
-        `Error body is: ${error.error}`);
+        `Error body is: ${error.error}`
+      );
     }
-    // Return an observable with an error message
-    const err = new Error('Something went wrong, please try again later.');
-    throwError(() => err);
+    return throwError(() => error);
   }
-
 }

@@ -21,10 +21,21 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { ProfileCardComponent } from './profile-card/profile-card.component';
+import { GenreDialogComponent } from './genre-dialog/genre-dialog.component';
+import { DirectorDialogComponent } from './director-dialog/director-dialog.component';
+import { SynopsisDialogComponent } from './synopsis-dialog/synopsis-dialog.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { RemoveUserComponent } from './remove-user/remove-user.component';
+import { AddFavoriteComponent } from './add-favorite/add-favorite.component';
+import { RemoveFavoriteComponent } from './remove-favorite/remove-favorite.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: ProfileCardComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -35,7 +46,16 @@ const appRoutes: Routes = [
     UserRegistrationFormComponent,
     UserLoginFormComponent,
     MovieCardComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    ProfileCardComponent,
+    GenreDialogComponent,
+    DirectorDialogComponent,
+    SynopsisDialogComponent,
+    UpdateUserComponent,
+    RemoveUserComponent,
+    AddFavoriteComponent,
+    RemoveFavoriteComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +70,8 @@ const appRoutes: Routes = [
     FormsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot (appRoutes),
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

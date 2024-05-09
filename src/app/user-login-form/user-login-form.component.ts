@@ -33,6 +33,8 @@ export class UserLoginFormComponent implements OnInit {
         this.snackBar.open('User logged in successfully!', 'OK', {
           duration: 2000
         });
+        localStorage.setItem('user', result.user.Username);
+        localStorage.setItem('token', result.token);
         // Navigate to the 'movies' route upon successful login
         this.router.navigate(['movies']);
       },

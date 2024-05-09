@@ -1,0 +1,54 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+      <span>MyFlix</span>
+      <span class="spacer"></span>
+      <button mat-button routerLink="/movies">Movies</button>
+      <button mat-button routerLink="/welcome">Logout</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="profile-page">
+  <h1>
+    My Profile
+  </h1>
+  <h2>My Details</h2>
+  
+            <!-- Display user's name -->
+            <div class="user-info-display">
+              <label>Name</label>
+              <span>{{ userData.Username }}</span>
+          </div>
+
+          <!-- Display user's birthday -->
+          <div class="user-info-display">
+              <label>Birthday</label>
+              <span>{{ userData.Birthday | date : "longDate" }}</span>
+          </div>
+
+          <!-- Display user's email -->
+          <div class="user-info-display">
+              <label>Email</label>
+              <span>{{ userData.Email }}</span>
+          </div>
+
+  <button
+    mat-raised-button
+    (click)="openUpdateUserDialog()"
+    style="margin-right: 10px;"
+    color="primary"
+  >
+    Update Profile
+  </button>
+  <button
+    mat-raised-button
+    color="warn"
+    (click)="openConfirmationDialog()"
+    style="margin-right: 10px;"
+  >
+     Delete Profile
+  </button>
+
+  
+  <p>
+  <h2>My Favorite Movies</h2>
+</div>

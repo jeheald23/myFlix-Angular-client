@@ -1,0 +1,13 @@
+.movie-container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.scroll-container {
+    display: flex; /* Ensure the children are displayed in a row */
+}
+
+.mat-card {
+    flex: 0 0 auto; /* Ensure each card has a fixed width */
+    margin-right: 20px;
+}
