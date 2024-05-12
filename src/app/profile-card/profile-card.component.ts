@@ -4,6 +4,9 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UpdateUserComponent } from '../update-user/update-user.component';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { DirectorDialogComponent } from '../director-dialog/director-dialog.component';
+import { SynopsisDialogComponent } from '../synopsis-dialog/synopsis-dialog.component';
+import { GenreDialogComponent } from '../genre-dialog/genre-dialog.component';
 
 @Component({
   selector: 'app-profile-card',
@@ -11,9 +14,10 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
   styleUrls: ['./profile-card.component.scss']
 })
 export class ProfileCardComponent implements OnInit {
-  user: any = {}; // Define user object
-  userData: any = {}; // Define userData object
-
+  user: any = {};
+  userData: any = {};
+  favoriteMovies: any[] = [];
+  
   constructor(
     public dialog: MatDialog,
     public fetchApiData: FetchApiDataService,
@@ -24,33 +28,65 @@ export class ProfileCardComponent implements OnInit {
     this.getProfile();
   }
 
-  // Function to get user profile
   public getProfile(): void {
     this.fetchApiData.getUser().subscribe((result: any) => {
       this.user = result; // Assign the fetched user data to the user object
-      this.userData.userName = this.user.userName; // Use user.username to set userName
-      this.userData.email = this.user.email; // Use user.email to set email
-      if (this.user.birthday) {
-        let Birthday = new Date(this.user.birthday);
-        if (!isNaN(Birthday.getTime())) {
-          this.userData.birthday = Birthday.toISOString().split('T')[0];
-        }
-      }
+      this.userData.userName = this.user.Username; // Use user.username to set userName
+      this.userData.email = this.user.Email; // Use user.email to set email
+      this.userData.birthday = this.user.Birthday;
     });
+
+    this.getFavoriteMovies(); // Fetch favorite movies after getting user profile
   }
   
-
-  // Function to open the dialog to update the user
   openUpdateUserDialog(): void {
     this.dialog.open(UpdateUserComponent, {
       width: '280px'
     });
   }
 
-  // Function to delete the user 
   openConfirmationDialog(): void {
     this.dialog.open(ConfirmationDialogComponent, {
       width: '280px'
+    });
+  }
+
+  getFavoriteMovies(): void {
+    // Fetch only the favorite movies based on the user's profile
+    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+      this.favoriteMovies = resp.filter((movie: any) => 
+        this.user.Favorites.includes(movie._id)
+      );
+    });
+  }
+  
+  openGenreDialog(genre: string, description: string): void {
+    this.dialog.open(GenreDialogComponent, {
+      data: {
+        genre: genre,
+        description: description
+      },
+      width: '500px'
+    });
+  }
+  
+  openDirectorDialog(name: string, bio: string): void {
+    this.dialog.open(DirectorDialogComponent, {
+      data: {
+        name: name,
+        bio: bio
+      },
+      width: '500px'
+    });
+  }
+  
+  openSynopsisDialog(title: string, description: string): void {
+    this.dialog.open(SynopsisDialogComponent, {
+      data: {
+        title: title,
+        description: description
+      },
+      width: '500px'
     });
   }
 }

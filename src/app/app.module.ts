@@ -28,8 +28,6 @@ import { DirectorDialogComponent } from './director-dialog/director-dialog.compo
 import { SynopsisDialogComponent } from './synopsis-dialog/synopsis-dialog.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { RemoveUserComponent } from './remove-user/remove-user.component';
-import { AddFavoriteComponent } from './add-favorite/add-favorite.component';
-import { RemoveFavoriteComponent } from './remove-favorite/remove-favorite.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 const appRoutes: Routes = [
@@ -53,8 +51,6 @@ const appRoutes: Routes = [
     SynopsisDialogComponent,
     UpdateUserComponent,
     RemoveUserComponent,
-    AddFavoriteComponent,
-    RemoveFavoriteComponent,
     ConfirmationDialogComponent,
   ],
   imports: [

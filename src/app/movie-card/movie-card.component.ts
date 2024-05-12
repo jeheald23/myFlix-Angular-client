@@ -15,25 +15,27 @@ import { SynopsisDialogComponent } from '../synopsis-dialog/synopsis-dialog.comp
 })
 export class MovieCardComponent {
   movies: any[] = [];
-  genres: any[] = [];
-  directors: any[] = [];
-  synopsis: any[] = [];
- 
-constructor(
-  public fetchApiData: FetchApiDataService,
-  public dialog: MatDialog,
-  public snackBar: MatSnackBar
-) { }
+  favoriteMovie: any[] = [];
 
-ngOnInit(): void {
-  this.getMovies();
-}
+  constructor(
+    public fetchApiData: FetchApiDataService,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar
+  ) { }
 
-getMovies(): void {
-  this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+  ngOnInit(): void {
+    this.getMovies();
+  }
+
+  getMovies(): void {
+    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      console.log(this.movies);
-      return this.movies;
+      // Populate favoritemovie array based on the user's favorite movies
+      let user = localStorage.getItem('user');
+      if (user) {
+        let parsedUser = JSON.parse(user);
+        this.favoriteMovie = this.movies.filter((movie: any) => parsedUser.favoriteMovie.includes(movie._id));
+      }
     });
   }
 
@@ -67,4 +69,64 @@ getMovies(): void {
     });
   }
 
+  /**
+    * Checks if a movie is in the user's favorite list.
+    * @param movie - The movie to check.
+    * @returns True if the movie is in the favorite list, false otherwise.
+    */
+  isFav(movie: any): boolean {
+    return this.favoriteMovie.some((favMovie: any) => favMovie._id === movie._id);
+  }
+
+  /**
+    * Toggles a movie in the user's favorite list.
+    * @param movie - The movie to toggle.
+    */
+  toggleFav(movie: any): void {
+    const isFavorite = this.isFav(movie);
+    isFavorite
+      ? this.deleteFavMovies(movie)
+      : this.addFavMovies(movie);
+  }
+
+  /**
+     * Adds a movie to the user's favorite list.
+     * @param movie - The movie to add to favorites.
+     */
+  addFavMovies(movie: any): void {
+    let user = localStorage.getItem('user');
+    if (user) {
+      let parsedUser = JSON.parse(user);
+      this.fetchApiData.addFavoriteMovies(parsedUser.Username, movie._id).subscribe((resp) => {
+        localStorage.setItem('user', JSON.stringify(resp));
+        // Add the movie to the favoritemovie array
+        this.favoriteMovie.push(movie);
+        // Show a snack bar message
+        this.snackBar.open(`${movie.title} has been added to your favorites`, 'OK', {
+          duration: 3000,
+        });
+      });
+    }
+  }
+
+  /**
+     * Deletes a movie from the user's favorite list.
+     * @param movie - The movie to remove from favorites.
+     */
+  deleteFavMovies(movie: any): void {
+    let user = localStorage.getItem('user');
+    if (user) {
+      let parsedUser = JSON.parse(user);
+      this.fetchApiData.deleteFavoriteMovie(parsedUser.Username, movie._id).subscribe((resp) => {
+        localStorage.setItem('user', JSON.stringify(resp));
+        // Remove the movie from the favoritemovie array
+        this.favoriteMovie = this.favoriteMovie.filter((favMovie: any) => favMovie._id !== movie._id);
+        // Show a snack bar message
+        this.snackBar.open(`${movie.title} has been removed from your favorites`, 'OK', {
+          duration: 3000,
+        });
+      });
+    }
+  }
 }
+

@@ -114,7 +114,7 @@ export class FetchApiDataService {
   }
 
   //Making the api call for the Get Favourite Movies for a user endpoint.
-  getFavouriteMovies(userName: string): Observable<any> {
+  getFavoriteMovies(userName: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'users/' + userName, {
       headers: new HttpHeaders(
@@ -128,7 +128,7 @@ export class FetchApiDataService {
   }
 
   //  Making the api call for the Add a Movie to Favourite Movies endpoint.
-  addFavouriteMovies(userName: string, movieid: string): Observable<any> {
+  addFavoriteMovies(userName: string, movieid: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.post(apiUrl + 'users/' + userName + '/movies/' + movieid, null, {
       headers: new HttpHeaders({
@@ -141,18 +141,18 @@ export class FetchApiDataService {
   }
 
   // Making the api call for the Update User endpoint.
-  updateUser(userDetails: any): Observable<any> {
+  updateUser(userDetails:any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.put(apiUrl + 'users/' + userDetails.Username, {
-      headers: new HttpHeaders(
-        {
-          Authorization: 'Bearer ' + token,
-        })
+    return this.http.put(apiUrl + 'users/' + userDetails.Username, userDetails, {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      })
     }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
+  
 
   //  Making the api call for the Delete User endpoint.
   deleteUser(): Observable<any> {
@@ -167,7 +167,7 @@ export class FetchApiDataService {
 
 
   // Making the api call to delete a movie from the user's favorite list
-  deleteFavoriteMovie(movieid: string): Observable<any> {
+  deleteFavoriteMovie(Username: string, movieid: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
     console.log('Deleting movie with ID:', movieid);
