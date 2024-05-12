@@ -16,7 +16,7 @@ import { GenreDialogComponent } from '../genre-dialog/genre-dialog.component';
 export class ProfileCardComponent implements OnInit {
   user: any = {};
   userData: any = {};
-  favoriteMovies: any[] = [];
+  FavoriteMovies: any[] = [];
   
   constructor(
     public dialog: MatDialog,
@@ -55,8 +55,8 @@ export class ProfileCardComponent implements OnInit {
     // Fetch only the favorite movies based on the user's profile
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       // Check if this.user and this.user.Favorites are defined
-      if (this.user && this.user.Favorites) {
-        this.favoriteMovies = resp.filter((movie: any) => 
+      if (this.user && this.user.FavoriteMovies) {
+        this.FavoriteMovies = resp.filter((movie: any) => 
           this.user.FavoriteMovies.includes(movie._id)
         );
       }
@@ -69,7 +69,7 @@ export class ProfileCardComponent implements OnInit {
     * @returns True if the movie is in the favorite list, false otherwise.
     */
   isFav(movie: any): boolean {
-    return this.favoriteMovies.some((favMovie: any) => favMovie._id === movie._id);
+    return this.FavoriteMovies.some((favMovie: any) => favMovie._id === movie._id);
   }
 
   /**
@@ -94,7 +94,7 @@ export class ProfileCardComponent implements OnInit {
       this.fetchApiData.addFavoriteMovies(parsedUser.Username, movie._id).subscribe((resp) => {
         localStorage.setItem('user', JSON.stringify(resp));
         // Add the movie to the favoritemovie array
-        this.favoriteMovies.push(movie);
+        this.FavoriteMovies.push(movie);
         // Show a snack bar message
         this.snackBar.open(`${movie.title} has been added to your favorites`, 'OK', {
           duration: 3000,
@@ -114,7 +114,7 @@ export class ProfileCardComponent implements OnInit {
       this.fetchApiData.deleteFavoriteMovie(parsedUser.Username, movie._id).subscribe((resp) => {
         localStorage.setItem('user', JSON.stringify(resp));
         // Remove the movie from the favoritemovie array
-        this.favoriteMovies = this.favoriteMovies.filter((favMovie: any) => favMovie._id !== movie._id);
+        this.FavoriteMovies = this.FavoriteMovies.filter((favMovie: any) => favMovie._id !== movie._id);
         // Show a snack bar message
         this.snackBar.open(`${movie.title} has been removed from your favorites`, 'OK', {
           duration: 3000,

@@ -42,12 +42,12 @@
   <h2>My Favorite Movies</h2>
 
   <div class="favorite-movie-container">
-    <div *ngIf="favoriteMovies.length === 0" class="movie-cards">
+    <div *ngIf="FavoriteMovies.length === 0" class="movie-cards">
       <p>You have no favorite movies!</p>
       </div>
       
       <div class="movie-cards">
-        <mat-card *ngFor="let movie of favoriteMovies;" style="display: inline-block; margin-right: 20px;">
+        <mat-card *ngFor="let movie of FavoriteMovies;" style="display: inline-block; margin-right: 20px;">
             <mat-card-header>
                 <mat-card-title>{{movie.title}}</mat-card-title>
                 <mat-card-subtitle>Directed by: {{movie.director.name}}</mat-card-subtitle>
