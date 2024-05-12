@@ -34,10 +34,15 @@ export class MovieCardComponent {
       let user = localStorage.getItem('user');
       if (user) {
         let parsedUser = JSON.parse(user);
-        this.favoriteMovie = this.movies.filter((movie: any) => parsedUser.favoriteMovie.includes(movie._id));
+        if (parsedUser && parsedUser.Favorites) {
+          this.favoriteMovie = resp.filter((movie: any) => 
+            parsedUser.Favorites.includes(movie._id)
+          );
+        }
       }
     });
   }
+  
 
   openGenreDialog(genre: string, description: string): void {
     this.dialog.open(GenreDialogComponent, {
@@ -85,15 +90,15 @@ export class MovieCardComponent {
   toggleFav(movie: any): void {
     const isFavorite = this.isFav(movie);
     isFavorite
-      ? this.deleteFavMovies(movie)
-      : this.addFavMovies(movie);
+      ? this.deleteFavoriteMovie(movie)
+      : this.addFavoriteMovie(movie);
   }
 
   /**
      * Adds a movie to the user's favorite list.
      * @param movie - The movie to add to favorites.
      */
-  addFavMovies(movie: any): void {
+  addFavoriteMovie(movie: any): void {
     let user = localStorage.getItem('user');
     if (user) {
       let parsedUser = JSON.parse(user);
@@ -113,7 +118,7 @@ export class MovieCardComponent {
      * Deletes a movie from the user's favorite list.
      * @param movie - The movie to remove from favorites.
      */
-  deleteFavMovies(movie: any): void {
+  deleteFavoriteMovie(movie: any): void {
     let user = localStorage.getItem('user');
     if (user) {
       let parsedUser = JSON.parse(user);

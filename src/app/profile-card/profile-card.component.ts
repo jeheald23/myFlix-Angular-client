@@ -34,9 +34,9 @@ export class ProfileCardComponent implements OnInit {
       this.userData.userName = this.user.Username; // Use user.username to set userName
       this.userData.email = this.user.Email; // Use user.email to set email
       this.userData.birthday = this.user.Birthday;
-    });
 
-    this.getFavoriteMovies(); // Fetch favorite movies after getting user profile
+      this.getFavoriteMovies(); // Fetch favorite movies after getting user profile
+    });
   }
   
   openUpdateUserDialog(): void {
@@ -54,9 +54,12 @@ export class ProfileCardComponent implements OnInit {
   getFavoriteMovies(): void {
     // Fetch only the favorite movies based on the user's profile
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      this.favoriteMovies = resp.filter((movie: any) => 
-        this.user.Favorites.includes(movie._id)
-      );
+      // Check if this.user and this.user.Favorites are defined
+      if (this.user && this.user.Favorites) {
+        this.favoriteMovies = resp.filter((movie: any) => 
+          this.user.Favorites.includes(movie._id)
+        );
+      }
     });
   }
   
@@ -90,3 +93,4 @@ export class ProfileCardComponent implements OnInit {
     });
   }
 }
+
