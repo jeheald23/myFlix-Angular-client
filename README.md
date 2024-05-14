@@ -1,27 +1,48 @@
-# MyFlixAngularClient
+<h1>myFlix Angular App</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+<p>This project is the client-side for an application based on its existing server-side code (REST API and database).</p>
 
-## Development server
+<h2>Features</h2>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<ul>
+    <li><strong>Welcome Screen:</strong> Allows users to register and sign in.</li>
+    <li><strong>Movie Card Page:</strong> Users can browse all movies in the database.</li>
+    <li><strong>Additional Movie Information:</strong> Buttons to view more information about the genre, director, or synopsis of a movie.</li>
+    <li><strong>Favorites List:</strong> Users can add or remove movies to their favorites list.</li>
+    <li><strong>Profile Page:</strong> Users can view their information.</li>
+    <li><strong>Profile Management:</strong> Buttons to update information or delete the profile.</li>
+</ul>
 
-## Code scaffolding
+<h2>Technologies Used</h2>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<ul>
+    <li>Angular CLI version 17.3.6</li>
+    <li>Angular Material version 17.3.7</li>
+    <li>RxJS</li>
+</ul>
 
-## Build
+<h2>Installation</h2>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<ol>
+    <li>Clone the repository.</li>
+    <li>Navigate to the project directory.</li>
+    <li>Run <code>npm install</code> to install dependencies.</li>
+    <li>Run <code>ng serve</code> to start the development server.</li>
+</ol>
 
-## Running unit tests
+<h2>Usage</h2>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<ol>
+    <li>Open your web browser and navigate to <code>http://localhost:4200</code>.</li>
+    <li>Register or sign in to access the application features.</li>
+    <li>Explore movies, manage your profile, and enjoy!</li>
+</ol>
 
-## Running end-to-end tests
+<h2>Contributing</h2>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+<p>Contributions are welcome! Please follow the <a href="CONTRIBUTING.md">Contribution Guidelines</a>.</p>
 
-## Further help
+<h2>License</h2>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<p>This project is licensed under the <a href="LICENSE">MIT License</a>.</p>
+

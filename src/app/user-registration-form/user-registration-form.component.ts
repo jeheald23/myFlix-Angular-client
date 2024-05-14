@@ -42,7 +42,10 @@ registerUser(): void {
       console.log(error);
       let errorMessage = 'An error occurred during user registration.';
       if (error && error.error && error.error.message) {
-        errorMessage = error.error.message; // Use the error message from the API response
+        // Use the error message from the API response
+        if (error.error.message === 'Username is already taken') {
+          errorMessage = 'Username is already taken. Please choose a different username.';
+        }
       }
       this.snackBar.open(errorMessage, 'OK', {
         duration: 2000
@@ -50,6 +53,7 @@ registerUser(): void {
     }
   );
 }
+
 
 
   }

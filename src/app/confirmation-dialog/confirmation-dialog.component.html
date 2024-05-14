@@ -8,21 +8,11 @@
     </mat-card-content>
     <mat-card-actions>
       <p>  
-      <button
-          mat-raised-button
-          (click)="confirmDelete()"
-          color="primary"
-          style="margin-right: 10px;"
-        >
-          Confirm
+        <button mat-raised-button (click)="confirmDelete()" style="margin-right: 10px;" color="button">
+          <span style="color: white;">Confirm</span>
         </button>
-        <button
-          mat-raised-button
-          (click)="cancelDelete()"
-          color="primary"
-          style="margin-right: 10px;"
-          >
-          Cancel  
+        <button mat-raised-button (click)="cancelDelete()" style="margin-right: 10px;" color="button">
+          <span style="color: white;">Cancel</span>
         </button>
         </p>
     </mat-card-actions>

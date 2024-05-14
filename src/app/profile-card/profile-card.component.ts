@@ -17,7 +17,7 @@ export class ProfileCardComponent implements OnInit {
   user: any = {};
   userData: any = {};
   FavoriteMovies: any[] = [];
-  
+
   constructor(
     public dialog: MatDialog,
     public fetchApiData: FetchApiDataService,

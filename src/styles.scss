@@ -1,41 +1,93 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
+
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
+// have to load a single CSS file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$myFlix-Angular-client-primary: mat.define-palette(mat.$indigo-palette);
-$myFlix-Angular-client-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+// Define the palette for your primary color
+$myFlix-Angular-client-primary: mat.define-palette(mat.$indigo-palette, 500, 300, 700);
+
+// Define the palette for your accent color (optional, but required by the theme)
+$myFlix-Angular-client-accent: mat.define-palette(mat.$pink-palette, 400, 200, 600);
+
+// Define the palette for your button color
+$myFlix-Angular-client-button-color: mat.define-palette(mat.$grey-palette, 300);
 
 // The warn palette is optional (defaults to red).
 $myFlix-Angular-client-warn: mat.define-palette(mat.$red-palette);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
+// Create the theme object with your custom primary, accent, and button colors
 $myFlix-Angular-client-theme: mat.define-light-theme((
   color: (
     primary: $myFlix-Angular-client-primary,
     accent: $myFlix-Angular-client-accent,
+    button: $myFlix-Angular-client-button-color, // Define the button color
     warn: $myFlix-Angular-client-warn,
   ),
-  typography: mat.define-typography-config(),
-  density: 0
 ));
 
 // Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
 @include mat.all-component-themes($myFlix-Angular-client-theme);
 
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+  background-color: #EADBC8;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+/* Override the color for buttons */
+.mat-button,
+.mat-raised-button,
+.mat-flat-button,
+.mat-icon-button,
+.mat-stroked-button,
+.mat-button-toggle,
+.mat-fab,
+.mat-mini-fab,
+.mat-tab-label,
+.mat-tab-link,
+.mat-tab-header,
+.mat-tab-body-wrapper,
+.mat-tab-body-active,
+.mat-tab-body,
+.mat-tab-group,
+.mat-icon-button,
+.mat-icon-button:not(:hover) {
+  color: #B5C18E !important;
+  background-color: #B5C18E !important;
+}
+.mat-toolbar .mat-button,
+.mat-toolbar .mat-raised-button,
+.mat-toolbar .mat-flat-button,
+.mat-toolbar .mat-icon-button,
+.mat-toolbar .mat-stroked-button,
+.mat-toolbar .mat-button-toggle,
+.mat-toolbar .mat-fab,
+.mat-toolbar .mat-mini-fab,
+.mat-toolbar .mat-tab-label,
+.mat-toolbar .mat-tab-link,
+.mat-toolbar .mat-tab-header,
+.mat-toolbar .mat-tab-body-wrapper,
+.mat-toolbar .mat-tab-body-active,
+.mat-toolbar .mat-tab-body,
+.mat-toolbar .mat-tab-group,
+.mat-toolbar .mat-icon-button,
+.mat-toolbar .mat-icon-button:not(:hover) {
+  color: white !important; /* Override button text color */
+  background-color: #B5C18E !important; /* Override button background color */
+}
+
+
+
+

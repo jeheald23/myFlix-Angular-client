@@ -1,80 +1,78 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>MyFlix</span>
-    <span class="spacer"></span>
-    <button mat-button routerLink="/movies">Movies</button>
-    <button mat-button routerLink="/welcome">Logout</button>
-  </mat-toolbar-row>
-</mat-toolbar>
+<nav class="navbar">
+    <div class="navbar-container">
+      <span class="navbar-brand">myFlix</span>
+      <div class="navbar-links">
+        <a routerLink="/movies" class="navbar-link">Movies</a>
+        <a routerLink="/welcome" class="navbar-link">Logout</a>
+      </div>
+    </div>
+  </nav>
+  
 
 <div class="profile-page">
-  <h1>
-    {{ user.Username }}'s Profile
-  </h1>
-  <h2>My Details</h2>
-  
-  <!-- Display user's name -->
-  <div class="user-info-display">
-    Name: {{ user.Username }}
-  </div>
+    <h1>{{ user.Username }}'s Profile</h1>
+    <h2>My Details</h2>
 
-  <!-- Display user's birthday -->
-  <div class="user-info-display">
-    Birthday: {{ user.Birthday | date : "shortDate" }}
-  </div>
+    <!-- Display user's details -->
+    <div class="user-info-display">
+        Name: {{ user.Username }}
+    </div>
+    <div class="user-info-display">
+        Birthday: {{ user.Birthday | date : "shortDate" }}
+    </div>
+    <div class="user-info-display">
+        Email: {{ user.Email }}
+    </div>
 
-  <!-- Display user's email -->
-  <div class="user-info-display">
-    Email: {{ user.Email }}
-  </div>
-  <p>
-  <!-- Button to open the dialog to update the user -->
-  <button mat-raised-button (click)="openUpdateUserDialog()" color="primary" class="profile-button" style="margin-right: 10px;">
-    Update Profile
-  </button>
+    <!-- Buttons to update or delete user profile -->
+    <p>
+        <button mat-raised-button (click)="openUpdateUserDialog()" color="button" class="profile-button">
+            <span style="color: white;">
+            Update Profile
+            </span>
+        </button>
+        <button mat-raised-button (click)="openConfirmationDialog()" color="warn" class="profile-button" style="margin-left: 10px;">
+            Delete Profile
+        </button>
+    </p>
 
-  <!-- Button to delete the user -->
-  <button mat-raised-button (click)="openConfirmationDialog()" color="warn" class="profile-button" style="margin-right: 10px">
-    Delete Profile
-  </button>
-  </p>
-  <p>
-  <h2>My Favorite Movies</h2>
-
-  <div class="favorite-movie-container">
-    <div *ngIf="FavoriteMovies.length === 0" class="movie-cards">
-      <p>You have no favorite movies!</p>
-      </div>
-      
-      <div class="movie-cards">
-        <mat-card *ngFor="let movie of FavoriteMovies;" style="display: inline-block; margin-right: 20px;">
-            <mat-card-header>
-                <mat-card-title>{{movie.title}}</mat-card-title>
-                <mat-card-subtitle>Directed by: {{movie.director.name}}</mat-card-subtitle>
-            </mat-card-header>
-            <img src="{{movie.image}}" alt="{{movie.title}}" width="300" style="height: 400px; object-fit: cover;"/>
-            <mat-card-actions>
-                <button mat-raised-button class="custom-button"
-                    (click)="openGenreDialog(movie.genre.name, movie.genre.description)">
-                    Genre
-                </button>
-                <button mat-raised-button class="custom-button"
-                    (click)="openDirectorDialog(movie.director.name, movie.director.bio)">
-                    Director
-                </button>
-                <button mat-raised-button class="custom-button"
-                (click)="openSynopsisDialog(movie.title, movie.description)">
-                Synopsis
-            </button>
-            <button mat-icon-button (click)="toggleFav(movie)">
-              <mat-icon *ngIf="isFav(movie)" style="transform: scale(1.5)">
-                  favorite
-              </mat-icon>
-              <mat-icon *ngIf="!isFav(movie)" style="transform: scale(1.5)">
-                  favorite_border
-              </mat-icon>
-          </button>
-            </mat-card-actions>
-        </mat-card>
+    <!-- Favorite Movies -->
+    <h2>My Favorite Movies</h2>
+    <div class="movie-container">
+        <div class="scroll-container">
+            <mat-card *ngFor="let movie of FavoriteMovies;" class="movie-card">
+                <mat-card-header>
+                    <mat-card-title style="font-size: 20px;">{{movie.title}}</mat-card-title>
+                    <mat-card-subtitle style="color:black">Directed by: {{movie.director.name}}</mat-card-subtitle>
+                </mat-card-header>
+                <div class="image-container">
+                    <img src="{{movie.image}}" alt="{{movie.title}}" class="movie-image"/>
+                </div>
+                <mat-card-actions class="movie-card-actions">
+                    <button mat-raised-button class="custom-button"
+                        (click)="openGenreDialog(movie.genre.name, movie.genre.description)">
+                        Genre
+                    </button>
+                    <button mat-raised-button class="custom-button"
+                        (click)="openDirectorDialog(movie.director.name, movie.director.bio)">
+                        Director
+                    </button>
+                    <button mat-raised-button class="custom-button"
+                        (click)="openSynopsisDialog(movie.title, movie.description)">
+                        Synopsis
+                    </button>
+                    <button mat-icon-button class="favorite-button" (click)="toggleFav(movie)">
+                        <mat-icon *ngIf="isFav(movie)">favorite</mat-icon>
+                        <mat-icon *ngIf="!isFav(movie)">favorite_border</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+            <div *ngIf="FavoriteMovies.length === 0" class="no-favorites-message">
+                <p>You have no favorite movies!</p>
+            </div>
+        </div>
     </div>
 </div>
+
+
+

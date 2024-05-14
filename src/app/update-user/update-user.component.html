@@ -46,21 +46,11 @@
       </form>
     </mat-card-content>
     <mat-card-actions>
-        <button
-          mat-raised-button
-          (click)="updateUser()"
-          color="primary"
-          style="margin-right: 10px;"
-        >
-          Update Profile
-        </button>
-        <button
-        mat-raised-button
-        (click)="cancelUpdate()"
-        color="primary"
-        style="margin-right: 10px;"
-        >
-        Cancel  
+      <button mat-raised-button (click)="updateUser()" style="margin-right: 10px;" color="button">
+        <span style="color: white;">Update</span>
+      </button>
+      <button mat-raised-button (click)="cancelUpdate()" style="margin-right: 10px;" color="button">
+        <span style="color: white;">Cancel</span>
       </button>
     </mat-card-actions>
   </mat-card>

@@ -1,29 +1,96 @@
 .profile-page {
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .profile-header {
-    margin-bottom: 20px;
-  }
-  
-  .user-details {
-    margin-top: 20px;
-  }
-  
-  .favorite-movies {
-    margin-top: 40px;
-  }
-  
-  .favorite-movie-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .movie-cards {
-    margin-bottom: 20px;
-  }
-  
-  /* Add any other styling as needed */
-  
+  margin: 0 20px; /* Adjust margin to give space from the edge of the screen */
+}
+
+.movie-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 20px; /* Add some padding to avoid horizontal scrollbar overlaying content */
+}
+
+.scroll-container {
+  display: inline-flex; /* Use inline-flex to enable horizontal scrolling */
+}
+
+.movie-card {
+  background-color: #C7B7A3;
+  flex: 0 0 auto; /* Ensure each card has a fixed width */
+  margin-right: 20px;
+  width: 350px; /* Set your desired width */
+}
+
+.image-container {
+  height: 450px; /* Set the fixed height for the image container */
+  overflow: hidden; /* Ensure the image doesn't overflow its container */
+}
+
+.movie-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Adjust the object-fit property as needed */
+}
+
+.movie-card-actions {
+  display: flex;
+  justify-content: space-between; /* Align buttons evenly */
+}
+
+.favorite-button {
+  margin-left: auto; /* Move the favorite button to the right */
+}
+
+.custom-button {
+  background-color: #B5C18E !important; /* Set the button background color */
+  border: 1px solid #B5C18E; /* Add a border to the button */
+}
+
+.custom-button:hover {
+  background-color: #9DAE6B !important; /* Change background color on hover */
+  color: white; /* Change text color on hover */
+}
+
+.custom-button-profile {
+  color: white;
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: #B5C18E;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Brand/logo styles */
+.navbar-brand {
+  font-size: 32px;
+  color: white;
+}
+
+/* Navbar links container */
+.navbar-links {
+  display: flex;
+}
+
+/* Individual navbar link styles */
+.navbar-link {
+  color: white;
+  font-size: 24px;
+  margin-left: 20px; /* Adjust margin between links */
+  text-decoration: none;
+}
+
+/* Move the first navbar link to the left margin */
+.navbar-links .navbar-link:first-child {
+  margin-left: 0; /* Reset margin */
+  margin-right: auto; /* Move the link to the left margin */
+}
+
+/* Hover effect for navbar links */
+.navbar-link:hover {
+  text-decoration: underline;
+}
+
