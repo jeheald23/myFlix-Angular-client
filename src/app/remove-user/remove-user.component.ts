@@ -3,6 +3,9 @@ import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+/**
+ * Component responsible for removing a user's account.
+ */
 @Component({
   selector: 'app-remove-user',
   templateUrl: './remove-user.component.html',
@@ -17,15 +20,13 @@ export class RemoveUserComponent implements OnInit {
     private dialog: MatDialog // Inject the MatDialog service
   ) { }
 
+  /** Lifecycle hook that is called after Angular has initialized all data-bound properties of a directive. */
   ngOnInit(): void {
   }
 
- 
-
-
   /**
-   * This method will delete the user's account
-   */ 
+   * Deletes the user's account.
+   */
   removeUser(): void {
     this.fetchApiData.deleteUser().subscribe((resp) => {
       this.dialogRef.close(); // This will close the modal on success!

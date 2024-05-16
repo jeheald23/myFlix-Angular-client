@@ -4,6 +4,9 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router'; // Import Router module
 
+/**
+ * Component for displaying a confirmation dialog.
+ */
 @Component({
   selector: 'app-confirmation-dialog',
   templateUrl: './confirmation-dialog.component.html',
@@ -17,11 +20,16 @@ export class ConfirmationDialogComponent {
     private router: Router // Inject Router module
   ) { }
 
+  /**
+   * Confirms user deletion.
+   * Calls the removeUser method from FetchApiDataService to delete the user profile.
+   * On success, closes the dialog, clears local storage, shows a success message,
+   * and navigates to the welcome page.
+   * On error, shows an error message.
+   */
   confirmDelete(): void {
-    // Call the removeUser method from FetchApiDataService to delete the user profile
     this.fetchApiData.deleteUser().subscribe(
       () => {
-        // On success, close the dialog and show a success message
         this.dialogRef.close();
         localStorage.clear();
         this.snackBar.open('User profile deleted successfully!', 'OK', {
@@ -30,7 +38,6 @@ export class ConfirmationDialogComponent {
         this.router.navigate(['/welcome']); // Navigate to the welcome page
       },
       (error) => {
-        // On error, show an error message
         this.snackBar.open(error, 'OK', {
           duration: 2000
         });
@@ -38,9 +45,12 @@ export class ConfirmationDialogComponent {
     );
   }
 
+  /**
+   * Cancels user deletion.
+   * Closes the dialog without performing any action.
+   */
   cancelDelete(): void {
-    // This method will be called when the user cancels the action
     this.dialogRef.close(); // Close the dialog without performing any action
   }
-  
 }
+

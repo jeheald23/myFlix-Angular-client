@@ -29,6 +29,23 @@ ngOnInit(): void {
 }
 
 registerUser(): void {
+  // Check if any of the fields are empty
+  if (!this.userData.Username || !this.userData.Password || !this.userData.Email || !this.userData.Birthday) {
+    this.snackBar.open('All fields are required.', 'OK', {
+      duration: 2000
+    });
+    return; // Stop further execution
+  }
+
+  // Check if the username is less than 5 characters
+  if (this.userData.Username.length < 5) {
+    this.snackBar.open('Username must be at least 5 characters long.', 'OK', {
+      duration: 2000
+    });
+    return; // Stop further execution
+  }
+
+  // If all validations pass, proceed with user registration
   this.fetchApiData.userRegistration(this.userData).subscribe(
     (result) => {
       // Logic for a successful user registration goes here! (To be implemented)
@@ -53,7 +70,4 @@ registerUser(): void {
     }
   );
 }
-
-
-
-  }
+}

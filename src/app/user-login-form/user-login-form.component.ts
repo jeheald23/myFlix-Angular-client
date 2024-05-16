@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 
 import { FetchApiDataService } from '../fetch-api-data.service';
 
+/**
+ * Component responsible for the user login form.
+ */
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
@@ -12,6 +15,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 })
 export class UserLoginFormComponent implements OnInit {
 
+  /** Input data for the user login form. */
   @Input() userData = { Username: '', Password: '' };
 
   constructor(
@@ -21,9 +25,13 @@ export class UserLoginFormComponent implements OnInit {
     private router: Router
   ) { }
 
+  /** Lifecycle hook that is called after Angular has initialized all data-bound properties of a directive. */
   ngOnInit(): void {
   }
 
+  /**
+   * Logs in the user.
+   */
   userLogin(): void {
     this.fetchApiData.userLogin(this.userData).subscribe(
       (result) => {
@@ -49,3 +57,4 @@ export class UserLoginFormComponent implements OnInit {
   }
 
 }
+

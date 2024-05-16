@@ -1,14 +1,14 @@
-
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-
+/**
+ * Component for displaying a dialog with director information.
+ */
 @Component({
   selector: 'app-director-dialog',
   templateUrl: './director-dialog.component.html',
-  styleUrls: ['./director-dialog.component.scss'] // <- Use `styleUrls` instead of `styleUrl`
+  styleUrls: ['./director-dialog.component.scss'] // Use `styleUrls` instead of `styleUrl`
 })
-
 export class DirectorDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DirectorDialogComponent>,

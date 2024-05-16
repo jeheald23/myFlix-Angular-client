@@ -3,6 +3,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+/**
+ * Component responsible for updating user information.
+ */
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
@@ -10,8 +13,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UpdateUserComponent implements OnInit {
 
+  /** Input data for updating user information. */
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
-  @Output() updateUserEvent = new EventEmitter<any>(); // Define an output property to emit events
+
+  /** Output event emitter for updating user information. */
+  @Output() updateUserEvent = new EventEmitter<any>();
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -19,9 +25,13 @@ export class UpdateUserComponent implements OnInit {
     public snackBar: MatSnackBar
   ) { }
 
+  /** Lifecycle hook that is called after Angular has initialized all data-bound properties of a directive. */
   ngOnInit(): void {
   }
 
+  /**
+   * Updates the user information.
+   */
   updateUser(): void {
     this.fetchApiData.updateUser(this.userData).subscribe(
       (result) => {
@@ -46,6 +56,9 @@ export class UpdateUserComponent implements OnInit {
     );
   }
 
+  /**
+   * Cancels the update action.
+   */
   cancelUpdate(): void {
     // This method will be called when the user cancels the action
     this.dialogRef.close(); // Close the dialog without performing any action

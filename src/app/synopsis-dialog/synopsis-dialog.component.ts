@@ -1,6 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+/**
+ * Component for displaying movie synopsis in a dialog.
+ */
 @Component({
   selector: 'app-synopsis-dialog',
   templateUrl: './synopsis-dialog.component.html',
@@ -16,3 +19,4 @@ export class SynopsisDialogComponent {
     }
   ) { }
 }
+
